@@ -4,9 +4,16 @@ from .models import Lead
 # Create your views here.
 
 
-def home_page(request):
+def lead_list(request):
     lead = Lead.objects.all()
     context = {
         "leads": lead
     }
-    return render(request, "second_page.html", context)
+    return render(request, "leads/lead_list.html", context)
+
+
+# pk stands for primary key
+def lead_detail(request, pk):
+    print(pk)
+    lead = Lead.objects.get(id=pk)
+    return HttpResponse(lead)
